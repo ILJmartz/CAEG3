@@ -325,6 +325,60 @@ body{color:var(--on);background-color:var(--sky);background-image:radial-gradien
 .view[data-fundo="produtos"]{--hero-foto:var(--f1b);--hero-pos:70% 45%;--hero-flip:-1;--sec-foto:var(--f2);--sec-flip:-1;}
 .view[data-fundo="quem"]{--hero-foto:var(--f1);--hero-pos:40% 25%;--hero-flip:-1;--sec-foto:var(--f3);}
 .view[data-fundo="drive"] .light::before,.view[data-fundo="produtos"] .light::before{left:auto;right:0;-webkit-mask-image:radial-gradient(ellipse closest-side at 54% 44%,#000 30%,transparent 100%);mask-image:radial-gradient(ellipse closest-side at 54% 44%,#000 30%,transparent 100%);}
+
+/* ---------- calendário ---------- */
+.cal-grid{display:grid;gap:22px;grid-template-columns:1fr;}
+@media (min-width:900px){.cal-grid{grid-template-columns:minmax(320px,430px) 1fr;align-items:start;}}
+.cal{background:var(--card-bg);color:var(--card-on);border:1px solid var(--card-line);border-radius:22px;padding:22px 20px 20px;}
+.cal-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:14px;}
+.cal-mes{font-family:var(--display);font-weight:700;font-size:1.3rem;margin:0;text-align:center;flex:1;}
+.cal-nav{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid var(--card-line2);background:transparent;color:var(--card-on);cursor:pointer;display:grid;place-items:center;transition:background .15s;}
+.cal-nav:hover{background:var(--tab-h);}
+.cal-nav svg{width:18px;height:18px;display:block;}
+.cal-sem{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;font-weight:700;font-size:.72rem;letter-spacing:.1em;color:var(--card-mut2);margin-bottom:6px;}
+.cal-dias{display:grid;grid-template-columns:repeat(7,1fr);gap:4px 2px;}
+.cal-dia{position:relative;height:44px;border:1.5px solid transparent;border-radius:50%;background:none;color:var(--card-on);font:inherit;font-weight:500;font-size:.95rem;cursor:pointer;display:grid;place-items:center;padding:0 0 3px;transition:background .15s;}
+.cal-dia:hover{background:var(--tab-h);}
+.cal-dia.hoje{border-color:var(--focus);}
+.cal-dia.tem::after{content:"";position:absolute;bottom:5px;left:50%;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:var(--focus);}
+.cal-dia.sel{background:var(--pill-bg);color:var(--pill-on);border-color:transparent;}
+.cal-dia.sel.tem::after{background:var(--pill-on);}
+.cal-vazio{display:block;}
+.agenda{background:var(--card-bg);color:var(--card-on);border:1px solid var(--card-line);border-radius:22px;overflow:hidden;}
+.ag-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:20px 24px;border-bottom:1px solid var(--card-line);}
+.ag-titulo{font-family:var(--display);font-weight:700;font-size:1.25rem;margin:0;}
+.ag-limpa{background:none;border:1px solid var(--card-line2);color:var(--card-on);border-radius:999px;padding:8px 14px;font-size:.78rem;font-weight:700;letter-spacing:.04em;cursor:pointer;}
+.ag-limpa:hover{background:var(--tab-h);}
+.ag-vazio{margin:0;padding:38px 24px;color:var(--card-mut2);text-align:center;}
+.agrow{display:flex;gap:16px;padding:18px 24px;border-top:1px solid var(--card-line);}
+.agrow:first-child{border-top:0;}
+.ag-badge{flex:none;width:62px;border-radius:14px;background:var(--card-bg2);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:9px 0;line-height:1;align-self:flex-start;}
+.ag-badge b{font-family:var(--display);font-size:1.5rem;font-weight:700;}
+.ag-badge small{font-size:.68rem;letter-spacing:.1em;margin-top:3px;color:var(--card-mut2);font-weight:700;}
+.ag-info{min-width:0;flex:1;}
+.ag-nome{font-family:var(--display);font-weight:700;font-size:1.2rem;line-height:1.2;margin:0 0 4px;overflow-wrap:anywhere;}
+.ag-meta{display:flex;flex-wrap:wrap;gap:2px 14px;margin:0;color:var(--card-mut2);font-size:.88rem;}
+.ag-desc{margin:8px 0 0;color:var(--card-mut);white-space:pre-line;overflow-wrap:anywhere;font-size:.95rem;}
+.ag-desc a{color:inherit;text-decoration:underline;text-underline-offset:3px;}
+.ag-link{display:inline-flex;align-items:center;gap:8px;margin-top:10px;font-weight:700;font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;color:var(--card-on);text-decoration:none;border-bottom:1px solid var(--card-line2);padding-bottom:2px;}
+.ag-link .ic svg{width:16px;height:16px;}
+.au-txt{max-width:46em;margin-bottom:22px;}
+.au-img{display:block;width:100%;max-width:860px;padding:0;border:1px solid var(--card-line);border-radius:18px;overflow:hidden;background:var(--media-bg);cursor:zoom-in;margin:0 0 22px;}
+.au-img img{display:block;width:100%;height:auto;}
+.au-act{margin-top:4px;}
+.text a{color:inherit;}
+@media (max-width:520px){ .agrow{padding:16px 16px;gap:12px;} .ag-top{padding:18px 16px;} .ag-badge{width:54px;} }
+.view[data-fundo="calendario"]{--hero-foto:var(--f1);--hero-pos:22% 62%;--sec-foto:var(--f3);--sec-flip:-1;}
+
+/* ---------- cabeçalho no celular: duas linhas (logo e tema em cima, as 5 abas embaixo) ---------- */
+@media (max-width:759px){
+  .topbar-in{display:grid;grid-template-columns:1fr auto;grid-template-areas:"marca tema" "abas abas";gap:6px 8px;padding:8px 10px;border-radius:24px;}
+  .brand{grid-area:marca;padding:0;} .brand img{width:38px;height:38px;} .brand-txt{display:flex;}
+  .tema-btn{grid-area:tema;width:36px;height:36px;margin:0;} .tema-btn svg{width:18px;height:18px;}
+  .tabs{grid-area:abas;display:grid;grid-template-columns:repeat(5,1fr);gap:2px;}
+  .tab{white-space:normal;text-align:center;padding:8px 2px;font-size:.7rem;line-height:1.15;border-radius:14px;}
+}
+@media (max-width:380px){ .tab{font-size:.64rem;padding:8px 1px;} }
 </style>
 </head>
 <body>
@@ -338,6 +392,7 @@ body{color:var(--on);background-color:var(--sky);background-image:radial-gradien
       <button type="button" class="tab" data-tab="inicio">Início</button>
       <button type="button" class="tab" data-tab="drive">Drive de Estudos</button>
       <button type="button" class="tab" data-tab="produtos">Produtos</button>
+      <button type="button" class="tab" data-tab="calendario">Calendário</button>
       <button type="button" class="tab" data-tab="quem">Quem somos nós?</button>
     </nav>
     <button type="button" class="tema-btn" id="tema-btn" aria-label="Mudar para o modo claro" title="Mudar para o modo claro">
@@ -371,6 +426,9 @@ body{color:var(--on);background-color:var(--sky);background-image:radial-gradien
    - Endereços (https://...) escritos dentro de qualquer texto viram links clicáveis.
    - EVENTOS (aba "Quem somos nós?", o mais recente primeiro): titulo, quando
      (texto, como "Outubro de 2025"), local, descricao e imagem.
+   - AGENDA (aba "Calendário"): data ("2026-10-09"), titulo, categoria, horario,
+     local, descricao e link. O dia fica marcado no calendário.
+   - AULAS (fim da aba "Calendário"): texto, imagem e link do calendário da faculdade.
    - MEMBROS: nome, cargo, curso, contato, bio e foto.
    - RODAPÉ: endereco e redes (nome e url; só aparecem se a url estiver preenchida).
    - IMAGEM / FOTO: o nome de uma imagem da lista IMAGENS (no fim do arquivo),
@@ -421,6 +479,12 @@ var CONTEUDO = /*CONTEUDO:INICIO*/{
       "imagem": "img-muwwipl9lpk"
     }
   ],
+  "agenda": [],
+  "aulas": {
+    "texto": "",
+    "imagem": "",
+    "link": ""
+  },
   "membros": [
     {
       "nome": "Vitor Lazaroto",
@@ -539,7 +603,8 @@ var CONTEUDO = /*CONTEUDO:INICIO*/{
 var $app = document.getElementById('app');
 var $footer = document.getElementById('footer');
 var LOGO = (document.querySelector('.brand img') || {}).src || '';
-var reduzir = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+var forcaMov = /[?&]movimento=1(&|$)/.test(location.search);
+var reduzir = !forcaMov && !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
 function h(tag, props){
   var el = document.createElement(tag);
@@ -565,7 +630,9 @@ function h(tag, props){
 var SVG = {
   folder: '<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/>',
   close: '<path d="M6 6l12 12M18 6L6 18"/>',
-  arrow: '<path d="M5 12h14"/><path d="M13 6l6 6-6 6"/>'
+  arrow: '<path d="M5 12h14"/><path d="M13 6l6 6-6 6"/>',
+  chevE: '<path d="M15 6l-6 6 6 6"/>',
+  chevD: '<path d="M9 6l6 6-6 6"/>'
 };
 function icon(name, cls){
   var s = document.createElement('span');
@@ -621,11 +688,12 @@ function dataBadge(iso){
 /* ---------- navegação ---------- */
 var route = 'inicio';
 var newsLimit = 10;
-var TABHASH = { inicio: '#/inicio', drive: '#/drive', produtos: '#/produtos', quem: '#/quem-somos' };
+var TABHASH = { inicio: '#/inicio', drive: '#/drive', produtos: '#/produtos', calendario: '#/calendario', quem: '#/quem-somos' };
 function parseHash(){
   var hsh = location.hash || '';
   if (hsh === '#/drive') return 'drive';
   if (hsh === '#/produtos') return 'produtos';
+  if (hsh === '#/calendario') return 'calendario';
   if (hsh === '#/quem-somos') return 'quem';
   return 'inicio';
 }
@@ -654,12 +722,12 @@ function arvores(){
   var S0 = [-16, 88], S1 = [58, 22], B0 = [-13.9, 90.4], B1 = [60.1, 24.4];
   function ponto(p){ return p[0] + ',' + p[1]; }
   function cabine(de, para, fixo){
-    var corpo = '<path class="cabo" d="M0,0 V2.2"/><rect class="cabine" x="-3.4" y="2.2" width="6.8" height="4.6" rx="1"/>';
+    var corpo = '<path class="cabo" d="M0,0 V2.4"/><rect class="cabine" x="-4" y="2.4" width="8" height="5.4" rx="1.2"/>';
     if (reduzir){
       return '<g transform="translate(' + (de[0] + (para[0] - de[0]) * fixo).toFixed(2) + ',' + (de[1] + (para[1] - de[1]) * fixo).toFixed(2) + ')">' + corpo + '</g>';
     }
-    return '<g><animateTransform attributeName="transform" type="translate" dur="26s" repeatCount="indefinite" calcMode="spline"' +
-      ' keyTimes="0;.42;.5;.92;1" keySplines=".45 0 .55 1;0 0 1 1;.45 0 .55 1;0 0 1 1"' +
+    return '<g><animateTransform attributeName="transform" type="translate" dur="20s" repeatCount="indefinite" calcMode="spline"' +
+      ' keyTimes="0;.4;.5;.9;1" keySplines=".45 0 .55 1;0 0 1 1;.45 0 .55 1;0 0 1 1"' +
       ' values="' + [ponto(de), ponto(para), ponto(para), ponto(de), ponto(de)].join(';') + '"/>' + corpo + '</g>';
   }
   var cabos = '<path class="cabo" d="M-16,88 L58,22"/><path class="cabo" d="M-13.9,90.4 L60.1,24.4"/>' +
@@ -818,6 +886,97 @@ function viewProdutos(){
   return v;
 }
 
+/* ---------- Calendário ---------- */
+var MESES_LONGOS = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+function pad2(n){ return (n < 10 ? '0' : '') + n; }
+function isoDe(a, m, d){ return a + '-' + pad2(m + 1) + '-' + pad2(d); }
+function dataValida(s){
+  var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(s || '').trim());
+  if (!m) return null;
+  var a = +m[1], me = +m[2] - 1, d = +m[3], dt = new Date(a, me, d);
+  if (dt.getFullYear() !== a || dt.getMonth() !== me || dt.getDate() !== d) return null;
+  return { a: a, m: me, d: d, iso: isoDe(a, me, d) };
+}
+function agendaOrdenada(){
+  return lista(CONTEUDO.agenda).map(function(e){ var d = e && dataValida(e.data); return d ? { e: e, d: d } : null; })
+    .filter(Boolean).sort(function(x, y){ return x.d.iso < y.d.iso ? -1 : (x.d.iso > y.d.iso ? 1 : 0); });
+}
+function nomeMes(m){ return MESES_LONGOS[m].charAt(0).toUpperCase() + MESES_LONGOS[m].slice(1); }
+var cal = null;
+function linhaAgenda(x){
+  var e = x.e, link = safeUrl(e.link);
+  var meta = [e.categoria, e.horario, e.local].filter(Boolean).map(function(s){ return h('span', {}, s); });
+  return h('article', { class: 'agrow' },
+    h('div', { class: 'ag-badge' }, h('b', {}, pad2(x.d.d)), h('small', {}, MESES[x.d.m])),
+    h('div', { class: 'ag-info' },
+      h('h4', { class: 'ag-nome' }, e.titulo || ''),
+      meta.length ? h('p', { class: 'ag-meta' }, meta) : null,
+      e.descricao ? h('p', { class: 'ag-desc' }, textoComLinks(e.descricao)) : null,
+      link ? h('a', { class: 'ag-link', href: link, target: '_blank', rel: 'noopener noreferrer' }, 'Saiba mais', icon('arrow')) : null));
+}
+function mudarMes(delta, area){
+  var d = new Date(cal.a, cal.m + delta, 1);
+  cal.a = d.getFullYear(); cal.m = d.getMonth(); cal.sel = null;
+  desenharCal(area, delta < 0 ? 'ant' : 'prox');
+}
+function desenharCal(area, foco){
+  if (!cal){ var t0 = new Date(); cal = { a: t0.getFullYear(), m: t0.getMonth(), sel: null }; }
+  var A = cal.a, M = cal.m, todos = agendaOrdenada(), t1 = new Date(), hojeIso = isoDe(t1.getFullYear(), t1.getMonth(), t1.getDate());
+  var porDia = {}; todos.forEach(function(x){ (porDia[x.d.iso] = porDia[x.d.iso] || []).push(x); });
+  var primeiro = new Date(A, M, 1).getDay(), dias = new Date(A, M + 1, 0).getDate();
+  var grade = h('div', { class: 'cal-dias' });
+  for (var i = 0; i < primeiro; i++) grade.append(h('span', { class: 'cal-vazio', 'aria-hidden': 'true' }));
+  for (var d = 1; d <= dias; d++) (function(d){
+    var iso = isoDe(A, M, d), n = (porDia[iso] || []).length, sel = cal.sel === iso;
+    grade.append(h('button', { type: 'button', 'data-foco': 'd' + iso,
+      class: 'cal-dia' + (iso === hojeIso ? ' hoje' : '') + (n ? ' tem' : '') + (sel ? ' sel' : ''),
+      'aria-pressed': sel ? 'true' : 'false',
+      'aria-label': d + ' de ' + MESES_LONGOS[M] + ' de ' + A + (iso === hojeIso ? ', hoje' : '') + (n ? ', ' + n + (n === 1 ? ' evento' : ' eventos') : ''),
+      onclick: function(){ cal.sel = sel ? null : iso; desenharCal(area, 'd' + iso); } }, String(d)));
+  })(d);
+  var caixa = h('div', { class: 'cal' },
+    h('div', { class: 'cal-top' },
+      h('button', { type: 'button', class: 'cal-nav', 'data-foco': 'ant', 'aria-label': 'Mês anterior', onclick: function(){ mudarMes(-1, area); } }, icon('chevE')),
+      h('h3', { class: 'cal-mes', 'aria-live': 'polite' }, nomeMes(M) + ' ' + A),
+      h('button', { type: 'button', class: 'cal-nav', 'data-foco': 'prox', 'aria-label': 'Próximo mês', onclick: function(){ mudarMes(1, area); } }, icon('chevD'))),
+    h('div', { class: 'cal-sem', 'aria-hidden': 'true' }, ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'].map(function(l){ return h('span', {}, l); })),
+    grade);
+  var itens, titulo;
+  if (cal.sel){
+    var ds = dataValida(cal.sel); itens = porDia[cal.sel] || [];
+    titulo = 'Eventos de ' + ds.d + ' de ' + MESES_LONGOS[ds.m];
+  } else {
+    itens = todos.filter(function(x){ return x.d.a === A && x.d.m === M; });
+    titulo = 'Eventos de ' + MESES_LONGOS[M] + ' de ' + A;
+  }
+  var painel = h('div', { class: 'agenda' },
+    h('div', { class: 'ag-top' }, h('h3', { class: 'ag-titulo' }, titulo),
+      cal.sel ? h('button', { type: 'button', class: 'ag-limpa', onclick: function(){ cal.sel = null; desenharCal(area); } }, 'Ver o mês todo') : null),
+    itens.length ? h('div', { class: 'ag-lista' }, itens.map(linhaAgenda))
+                 : h('p', { class: 'ag-vazio' }, cal.sel ? 'Nenhum evento neste dia.' : 'Nenhum evento neste mês.'));
+  area.replaceChildren(caixa, painel);
+  if (foco){ var el = area.querySelector('[data-foco="' + foco + '"]'); if (el){ try { el.focus({ preventScroll: true }); } catch (e) { el.focus(); } } }
+}
+function blocoAulas(){
+  var a = CONTEUDO.aulas || {}, src = imgSrc(a.imagem), link = safeUrl(a.link), texto = String(a.texto || '').trim(), partes = [];
+  if (texto) partes.push(h('p', { class: 'text au-txt' }, textoComLinks(texto)));
+  if (src) partes.push(h('button', { class: 'au-img', type: 'button', 'aria-label': 'Ampliar o calendário de aulas', onclick: function(){ ampliar(src, 'Calendário de aulas'); } },
+    h('img', { src: src, alt: 'Calendário de aulas', loading: 'lazy', onerror: function(ev){ var bt = ev.target.parentNode; if (bt) bt.remove(); } })));
+  if (link) partes.push(h('div', { class: 'au-act' }, pill('Abrir o calendário completo', 'fill', null, link)));
+  if (!partes.length) partes.push(vazio('O calendário de aulas da faculdade, com feriados, dias de prova e outras datas, será publicado aqui.'));
+  return h('div', { class: 'bloco', id: 'aulas' }, h('p', { class: 'eyebrow' }, 'Datas da faculdade'), h('h2', { class: 'h2' }, 'Calendário de aulas'), partes);
+}
+function viewCalendario(){
+  var v = h('div', { class: 'view', 'data-fundo': 'calendario' });
+  v.append(heroPagina('Datas e eventos', 'Calendário', 'Eventos, prazos e datas importantes do CAEG.'));
+  var area = h('div', { class: 'cal-grid', id: 'cal-area' });
+  desenharCal(area);
+  v.append(secao(
+    h('div', { class: 'bloco' }, h('p', { class: 'eyebrow' }, 'Agenda do CAEG'), h('h2', { class: 'h2' }, 'Calendário de eventos'), area),
+    blocoAulas()));
+  return v;
+}
+
 /* ---------- Quem somos nós? ---------- */
 var eventosLimit = 6;
 function eventoEl(e){
@@ -887,7 +1046,7 @@ function renderFooter(){
   var r = CONTEUDO.rodape || {};
   var redes = lista(r.redes).filter(function(x){ return x && x.nome && safeUrl(x.url); });
   var linhas = String(r.endereco || '').split('\n').map(function(s){ return s.trim(); }).filter(Boolean);
-  var nomes = { inicio: 'Início', drive: 'Drive de Estudos', produtos: 'Produtos', quem: 'Quem somos nós?' };
+  var nomes = { inicio: 'Início', drive: 'Drive de Estudos', produtos: 'Produtos', calendario: 'Calendário', quem: 'Quem somos nós?' };
   var nav = h('ul', { class: 'flinks' }, Object.keys(nomes).map(function(k){
     return h('li', {}, h('button', { class: 'flink', type: 'button', onclick: function(){ go(k); } }, nomes[k]));
   }));
@@ -909,7 +1068,7 @@ function render(){
   Array.prototype.forEach.call(document.querySelectorAll('.tab'), function(b){
     if (b.getAttribute('data-tab') === route) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current');
   });
-  var v = route === 'drive' ? viewDrive() : route === 'produtos' ? viewProdutos() : route === 'quem' ? viewQuem() : viewInicio();
+  var v = route === 'drive' ? viewDrive() : route === 'produtos' ? viewProdutos() : route === 'calendario' ? viewCalendario() : route === 'quem' ? viewQuem() : viewInicio();
   $app.replaceChildren(v);
 }
 Array.prototype.forEach.call(document.querySelectorAll('[data-tab]'), function(b){
